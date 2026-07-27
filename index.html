@@ -66,7 +66,7 @@
   </svg>
 </div>
 
-<!-- Con thuyền (đã cập nhật wrapper) -->
+<!-- Con thuyền -->
 <div class="boat-wrapper">
   <div class="boat">
     <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
@@ -108,6 +108,17 @@
       <h1>Kể tôi nghe<br>điều bạn <em>giấu kín</em></h1>
       <div class="subtitle">Không tên, không tài khoản. Chỉ là bạn và một lá thư nhỏ trôi giữa nắng và biển.</div>
 
+      <!-- MỚI: Menu thả xuống chọn chủ đề -->
+      <div class="category-row">
+        <select id="category" class="category-select">
+          <option value="Tâm sự chung">✨ Tâm sự chung</option>
+          <option value="Tình cảm">💌 Tình cảm - Crush</option>
+          <option value="Học tập">📚 Góc học tập</option>
+          <option value="Bức xúc">🌩️ Bức xúc - Góp ý</option>
+          <option value="Tìm người/đồ">🔍 Tìm đồ rơi / Tìm người</option>
+        </select>
+      </div>
+
       <textarea id="content" placeholder="Viết điều bạn muốn nói ở đây..." maxlength="3000"></textarea>
 
       <div class="file-row">
@@ -131,7 +142,11 @@
 
       <input type="text" class="honeypot" id="website" name="website" tabindex="-1" autocomplete="off" />
 
-      <button class="submit" id="submitBtn">Thả trôi ra biển ⛵</button>
+      <!-- MỚI: Thêm thẻ span bên trong để làm hiệu ứng xoay loading -->
+      <button class="submit" id="submitBtn">
+        <span class="btn-text">Thả trôi ra biển ⛵</span>
+        <span class="btn-loader"></span>
+      </button>
       <div class="status" id="status"></div>
     </div>
 
@@ -151,5 +166,5 @@
 <script src="script.js" defer></script>
 
 </body>
-  </html>
-  
+                           </html>
+                                                                         
