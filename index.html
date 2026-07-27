@@ -80,10 +80,37 @@
   </div>
 </div>
 
-<button class="music-toggle" id="musicToggle" title="Bật/tắt nhạc nền">🎵</button>
-<audio id="bgMusic" loop preload="none"></audio>
+<!-- WIDGET ÂM NHẠC MỚI (GÓC MÀN HÌNH) -->
+<div class="music-widget" id="musicWidget" title="Bấm để mở trình phát nhạc">
+  <div class="music-thumb-wrap">
+    <img id="widgetThumb" src="music-thumb.jpg" alt="Thumbnail bài hát" />
+    <div class="music-wave-bars" id="musicWaveBars">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
 
-<!-- Pop-up nhạc -->
+<!-- BANNER POP-UP ĐIỀU KHIỂN NHẠC -->
+<div class="music-control-banner" id="musicControlBanner">
+  <div class="banner-content-inner">
+    <img id="bannerThumb" src="music-thumb.jpg" alt="Thumbnail" class="banner-thumb" />
+    <div class="banner-song-info">
+      <div class="banner-song-title" id="bannerSongTitle">Tên bài hát đang phát</div>
+      <div class="banner-song-status" id="bannerSongStatus">Đang phát</div>
+    </div>
+    <div class="banner-controls">
+      <button id="bannerPlayPauseBtn" class="banner-btn" title="Phát / Tạm dừng">⏸</button>
+      <div class="volume-control-wrap">
+        <span class="vol-icon">🔊</span>
+        <input type="range" id="volumeRange" min="0" max="1" step="0.05" value="1" title="Điều chỉnh âm lượng">
+      </div>
+    </div>
+  </div>
+</div>
+
+<audio id="bgMusic" loop preload="auto"></audio>
+
+<!-- Pop-up nhạc khi vào trang -->
 <div class="music-popup-overlay" id="musicPopup">
   <div class="music-popup-content">
     <div class="music-icon" style="font-size: 32px; margin-bottom: 10px;">🎧</div>
@@ -108,7 +135,6 @@
       <h1>Kể tôi nghe<br>điều bạn <em>giấu kín</em></h1>
       <div class="subtitle">Không tên, không tài khoản. Chỉ là bạn và một lá thư nhỏ trôi giữa nắng và biển.</div>
 
-      <!-- MỚI: Menu thả xuống chọn chủ đề -->
       <div class="category-row">
         <select id="category" class="category-select">
           <option value="Tâm sự chung">✨ Tâm sự chung</option>
@@ -142,7 +168,6 @@
 
       <input type="text" class="honeypot" id="website" name="website" tabindex="-1" autocomplete="off" />
 
-      <!-- MỚI: Thêm thẻ span bên trong để làm hiệu ứng xoay loading -->
       <button class="submit" id="submitBtn">
         <span class="btn-text">Thả trôi ra biển ⛵</span>
         <span class="btn-loader"></span>
@@ -166,5 +191,4 @@
 <script src="script.js" defer></script>
 
 </body>
-                           </html>
-                                                                         
+  </html>
