@@ -516,26 +516,46 @@ button.submit {
   justify-content: center;
   gap: 8px;
 }
+
 .btn-loader {
   display: none; /* Ẩn mặc định */
-  width: 20px; 
-  height: 20px;
-  border: 2.5px solid rgba(255,255,255,0.4);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spinLoader 0.8s linear infinite;
-}
-@keyframes spinLoader {
-  to { transform: rotate(360deg); }
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 10px;
 }
 
-/* Khi có class is-loading, ẩn chữ và hiện vòng xoay */
+.btn-loader .dot {
+  animation: dotBounce 1.4s infinite ease-in-out both;
+}
+
+/* Tạo độ trễ giữa các dấu chấm để tạo sóng chuyển động */
+.btn-loader .dot:nth-child(1) { animation-delay: -0.32s; }
+.btn-loader .dot:nth-child(2) { animation-delay: -0.16s; }
+.btn-loader .dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes dotBounce {
+  0%, 80%, 100% { 
+    transform: scale(0); 
+    opacity: 0.3;
+  } 
+  40% { 
+    transform: scale(1.0); 
+    opacity: 1;
+  }
+}
+
+/* Khi bấm gửi, ẩn chữ và hiện hiệu ứng dấu chấm */
 button.submit.is-loading .btn-text {
   display: none;
 }
 button.submit.is-loading .btn-loader {
-  display: block;
+  display: flex;
 }
+
 /* ================= WIDGET & BANNER ÂM NHẠC MỚI ================= */
 
 /* Widget nhỏ ở góc màn hình */
