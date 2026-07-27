@@ -617,7 +617,7 @@
     94%, 100%{ transform: translateX(55%) rotate(10deg); opacity:0; }
   }
 
-  /* ================= ENCOURAGE TOAST =============
+  /* ================= ENCOURAGE TOAST ================= */
   .encourage-toast{
     position:fixed;
     top:88px; left:50%;
