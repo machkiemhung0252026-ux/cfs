@@ -849,36 +849,3 @@
     font-size: 11.5px !important; 
   }
 }
-/* ================= FIX MÀU CARD NỔI BẬT & DỊU MẮT ================= */
-
-.card {
-  /* Nền tím đen dạng kính mờ (vẫn nhìn xuyên nhẹ qua nền trời) */
-  background: rgba(30, 24, 48, 0.78) !important;
-  
-  /* Hiệu ứng làm mờ hậu cảnh giúp tách biệt rõ ràng */
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  
-  /* Viền sáng mảnh mờ tạo đường nét sắc sảo cho card */
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  
-  /* Bóng đổ sâu kết hợp ánh sáng tím dịu tỏa ra xung quanh */
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba(186, 140, 255, 0.15) !important;
-}
-
-/* Giữ các ô nhập liệu (textarea/input) nổi rõ và dễ viết */
-.card textarea,
-.card select {
-  background: rgba(255, 255, 255, 0.95) !important;
-  color: #2d2d2d !important;
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
-}
-
-/* Khung xác minh đếm sao/mặt trời bên dưới */
-.card .captcha-box,
-.card [class*="captcha"] {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-}
