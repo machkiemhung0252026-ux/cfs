@@ -11,8 +11,18 @@
 </head>
 <body>
 
+<div class="top-toolbar">
+  <button class="toolbar-btn" id="darkModeBtn" title="Chế độ tối/sáng">🌙</button>
+  <button class="toolbar-btn" id="shareBtn" title="Chia sẻ trang">
+    🔗
+    <span class="copied-badge" id="copiedBadge">Đã sao chép!</span>
+  </button>
+</div>
+
 <div class="sky" id="sky"></div>
 <div class="rays"></div>
+<div class="holo-sweep"></div>
+<div class="encourage-toast" id="encourageToast"></div>
 <div class="sun"></div>
 <div class="horizon-glow"></div>
 
@@ -59,66 +69,63 @@
   <div class="reflection"></div>
 </div>
 
-<!-- Cá heo -->
-<div class="dolphin">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path d="M85.5,50.2 c-7.2-2.1-15.6-3-24.1-1.2c-5.8,1.2-11.1,3.7-15.7,7.1c-1.3-3.6-3.8-6.5-7.1-8c-4.4-2-9.7-1.6-13.8,0.9c0,0-5,3.2-6.5,8.8 c-0.6,2.3-0.5,4.7,0.3,6.8c1.3,3.3,4,5.9,7.5,7c-1.7,3-1.6,6.6,0.3,9.5c1.7,2.5,4.5,4.2,7.7,4.5c4,0.3,7.9-1.3,10.6-4.1 c3.6-3.8,4.7-9.3,2.8-14c4.6-2.9,9.8-5,15.2-6C71,60,80,63.1,87.6,68.8C87.3,62,88.4,55.5,85.5,50.2z" fill="#1C6E73"/>
+<div class="boat">
+  <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <!-- Thân tàu -->
+    <path d="M 20 40 Q 15 35 12 25 L 20 20 L 60 20 L 68 25 Q 65 35 60 40 Z" fill="#8B6F47" stroke="#6B5232" stroke-width="1"/>
+    <path d="M 20 40 Q 15 40 12 45 L 68 45 Q 65 40 60 40 Z" fill="#A0826D" stroke="#6B5232" stroke-width="1"/>
+    <!-- Buồm chính -->
+    <path d="M 35 18 L 50 22 L 50 38 Q 40 42 35 40 Z" fill="#FFE5B4" stroke="#D4A574" stroke-width="0.8" opacity="0.9"/>
+    <path d="M 35 18 L 50 22 L 50 38 Q 40 42 35 40 Z" fill="#FFF0D9" stroke="none" opacity="0.4"/>
+    <!-- Cột buồm -->
+    <line x1="35" y1="18" x2="35" y2="40" stroke="#6B5232" stroke-width="1.2"/>
+    <!-- Chi tiết bé -->
+    <rect x="25" y="38" width="6" height="4" fill="#8B6F47" stroke="#6B5232" stroke-width="0.5"/>
   </svg>
 </div>
 
-<!-- Con thuyền -->
-<div class="boat-wrapper">
-  <div class="boat">
-    <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <path d="M 20 40 Q 15 35 12 25 L 20 20 L 60 20 L 68 25 Q 65 35 60 40 Z" fill="#8B6F47" stroke="#6B5232" stroke-width="1"/>
-      <path d="M 20 40 Q 15 40 12 45 L 68 45 Q 65 40 60 40 Z" fill="#A0826D" stroke="#6B5232" stroke-width="1"/>
-      <path d="M 35 18 L 50 22 L 50 38 Q 40 42 35 40 Z" fill="#FFE5B4" stroke="#D4A574" stroke-width="0.8" opacity="0.9"/>
-      <path d="M 35 18 L 50 22 L 50 38 Q 40 42 35 40 Z" fill="#FFF0D9" stroke="none" opacity="0.4"/>
-      <line x1="35" y1="18" x2="35" y2="40" stroke="#6B5232" stroke-width="1.2"/>
-      <rect x="25" y="38" width="6" height="4" fill="#8B6F47" stroke="#6B5232" stroke-width="0.5"/>
-    </svg>
-  </div>
+<div class="dolphin">
+  <svg viewBox="0 0 46 36" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2,26 Q10,4 24,6 Q34,7 40,16 Q36,14 30,15 Q34,20 32,26 Q28,20 24,20 Q22,26 16,28 Q18,22 14,20 Q8,22 2,26 Z" fill="#5A8FA8"/>
+    <path d="M2,26 Q10,4 24,6 Q20,10 18,16 Q12,14 8,18 Q6,22 2,26 Z" fill="#7BAEC4"/>
+    <circle cx="30" cy="12" r="1.3" fill="#1A2E36"/>
+  </svg>
 </div>
 
-<!-- WIDGET ÂM NHẠC MỚI (GÓC MÀN HÌNH) -->
-<div class="music-widget" id="musicWidget" title="Bấm để mở trình phát nhạc">
-  <div class="music-thumb-wrap">
-    <img id="widgetThumb" src="music-thumb2.jpg" alt="Thumbnail bài hát" />
-    <div class="music-wave-bars" id="musicWaveBars">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</div>
+<button class="music-btn" id="musicBtn" title="Mở trình phát nhạc"></button>
+<audio id="bgMusic" loop preload="none"></audio>
 
-<!-- BANNER POP-UP ĐIỀU KHIỂN NHẠC -->
-<div class="music-control-banner" id="musicControlBanner">
-  <div class="banner-content-inner">
-    <img id="bannerThumb" src="music-thumb2.jpg" alt="Thumbnail" class="banner-thumb" />
-    <div class="banner-song-info">
-      <div class="banner-song-title" id="bannerSongTitle">Tên bài hát đang phát</div>
-      <div class="banner-song-status" id="bannerSongStatus">Đang phát</div>
-    </div>
-    <div class="banner-controls">
-      <button id="bannerPlayPauseBtn" class="banner-btn" title="Phát / Tạm dừng">⏸</button>
-      <div class="volume-control-wrap">
-        <span class="vol-icon">🔊</span>
-        <input type="range" id="volumeRange" min="0" max="1" step="0.05" value="1" title="Điều chỉnh âm lượng">
+<!-- Player Modal -->
+<div class="player-modal" id="playerModal">
+  <div class="player-content">
+    <button class="player-close" id="playerClose">✕</button>
+    
+    <div class="player-card">
+      <div class="album-art" id="albumArt">
+        <span>🎵</span>
       </div>
-    </div>
-  </div>
-</div>
 
-<audio id="bgMusic" loop preload="auto"></audio>
+      <div class="player-title" id="playerTitle">Nhạc nền</div>
+      <div class="player-artist" id="playerArtist">Confession Ambient</div>
 
-<!-- Pop-up nhạc khi vào trang -->
-<div class="music-popup-overlay" id="musicPopup">
-  <div class="music-popup-content">
-    <div class="music-icon" style="font-size: 32px; margin-bottom: 10px;">🎧</div>
-    <h3>Bật nhạc nền nhé?</h3>
-    <p>Trải nghiệm viết confession sẽ cảm xúc hơn khi có chút âm thanh của biển đó.</p>
-    <div class="music-popup-actions">
-      <button id="btnPlayMusic" class="btn-yes">Bật nhạc</button>
-      <button id="btnMuteMusic" class="btn-no">Để sau</button>
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-time">
+        <span id="currentTime">0:00</span>
+        <span id="duration">0:00</span>
+      </div>
+
+      <div class="volume-control">
+        <span class="volume-icon">🔊</span>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" />
+      </div>
+
+      <div class="player-controls">
+        <button class="player-btn" id="prevBtn" title="Bài trước">⏮</button>
+        <button class="player-btn play-pause" id="playPauseBtn" title="Phát/Tạm dừng">▶</button>
+        <button class="player-btn" id="nextBtn" title="Bài sau">⏭</button>
+      </div>
     </div>
   </div>
 </div>
@@ -128,24 +135,15 @@
     <div class="seal">☀</div>
     <div id="formView">
       <div class="school-banner" id="schoolBanner">
-        <img id="schoolBannerImg" src="school-banner2.jpg" alt="Ảnh trường" />
+        <img id="schoolBannerImg" src="school-banner.jpg" alt="Ảnh trường" />
       </div>
 
       <div class="eyebrow">Ẩn danh</div>
       <h1>Kể tôi nghe<br>điều bạn <em>giấu kín</em></h1>
       <div class="subtitle">Không tên, không tài khoản. Chỉ là bạn và một lá thư nhỏ trôi giữa nắng và biển.</div>
 
-      <div class="category-row">
-        <select id="category" class="category-select">
-          <option value="Tâm sự chung">✨ Tâm sự chung</option>
-          <option value="Tình cảm">💌 Tình cảm - Crush</option>
-          <option value="Học tập">📚 Góc học tập</option>
-          <option value="Bức xúc">🌩️ Bức xúc - Góp ý</option>
-          <option value="Tìm người/đồ">🔍 Tìm đồ rơi / Tìm người</option>
-        </select>
-      </div>
-
       <textarea id="content" placeholder="Viết điều bạn muốn nói ở đây..." maxlength="3000"></textarea>
+      <div class="char-counter" id="charCounter">0/3000</div>
 
       <div class="file-row">
         <label class="file-label" for="imageInput">
@@ -168,10 +166,7 @@
 
       <input type="text" class="honeypot" id="website" name="website" tabindex="-1" autocomplete="off" />
 
-      <button class="submit" id="submitBtn">
-        <span class="btn-text">Thả trôi ra biển ⛵</span>
-        <span class="btn-loader"></span>
-      </button>
+      <button class="submit" id="submitBtn"><span id="submitBtnText">Thả trôi ra biển ⛵</span></button>
       <div class="status" id="status"></div>
     </div>
 
@@ -191,4 +186,5 @@
 <script src="script.js" defer></script>
 
 </body>
-  </html>
+        </html>
+          
