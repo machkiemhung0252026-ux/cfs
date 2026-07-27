@@ -374,6 +374,16 @@ imageInput.addEventListener('change', () => {
   reader.readAsDataURL(file);
 });
 
+const removeImageBtn = document.getElementById('removeImageBtn');
+removeImageBtn.addEventListener('click', () => {
+  imageInput.value = "";
+  imageBase64 = "";
+  imageMime = "";
+  preview.src = "";
+  polaroid.style.display = 'none';
+  fileLabelText.textContent = "Đính kèm hình ảnh (không bắt buộc)";
+});
+
 submitBtn.addEventListener('click', async () => {
   const content = contentEl.value.trim();
   const category = categorySelect.value;
@@ -432,6 +442,7 @@ submitBtn.addEventListener('click', async () => {
         statusEl.textContent = "";
         charCounter.textContent = "0/" + MAX_CHARS;
         charCounter.classList.remove('near-limit');
+        spawnFlowers();
         generateCaptcha();
       }, 550);
     } else {
@@ -454,7 +465,29 @@ againBtn.addEventListener('click', () => {
   formView.style.display = 'block';
 });
 
+const flowerBurst = document.getElementById('flowerBurst');
+const FLOWER_EMOJIS = ['🌸', '🌼', '🌺', '🌷', '🌻'];
+
+function spawnFlowers(){
+  const count = 3 + Math.floor(Math.random() * 2); // 3-4 bông
+  const positions = [-70, -35, 0, 35, 70]; // % lệch trái/phải so với tâm
+  const shuffled = positions.sort(() => Math.random() - 0.5).slice(0, count);
+
+  shuffled.forEach((offset, i) => {
+    const f = document.createElement('span');
+    f.className = 'flower';
+    f.textContent = FLOWER_EMOJIS[Math.floor(Math.random() * FLOWER_EMOJIS.length)];
+    f.style.left = `calc(50% + ${offset}px)`;
+    f.style.top = '10px';
+    f.style.animationDelay = (i * 0.12) + 's';
+    flowerBurst.appendChild(f);
+
+    setTimeout(() => f.remove(), 2800);
+  });
+}
+
 function showStatus(msg, ok) {
   statusEl.textContent = msg;
   statusEl.className = "status " + (ok ? "ok" : "err");
-}
+    }
+    
