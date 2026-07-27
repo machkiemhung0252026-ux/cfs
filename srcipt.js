@@ -64,14 +64,31 @@ schoolBannerImg.addEventListener('error', () => {
   schoolBanner.innerHTML = '<div class="banner-placeholder">Thêm ảnh trường bạn vào đây — đổi SCHOOL_BANNER_URL trong script.js</div>';
 });
 
-// ---------- xử lý pop-up & nhạc nền ----------
+// ---------- xử lý pop-up nhạc & trình phát nhạc mới ----------
 const bgMusic = document.getElementById('bgMusic');
-const musicToggle = document.getElementById('musicToggle');
+const musicWidget = document.getElementById('musicWidget');
+const musicControlBanner = document.getElementById('musicControlBanner');
+const bannerPlayPauseBtn = document.getElementById('bannerPlayPauseBtn');
+const bannerSongTitle = document.getElementById('bannerSongTitle');
+const bannerSongStatus = document.getElementById('bannerSongStatus');
+const widgetThumb = document.getElementById('widgetThumb');
+const bannerThumb = document.getElementById('bannerThumb');
+const volumeRange = document.getElementById('volumeRange');
+
 const musicPopup = document.getElementById('musicPopup');
 const btnPlayMusic = document.getElementById('btnPlayMusic');
 const btnMuteMusic = document.getElementById('btnMuteMusic');
+
+// Cấu hình tên bài hát, nguồn nhạc và ảnh thumbnail bài hát tại đây
 const MUSIC_URL = "music.mp3";
+const THUMB_URL = "music-thumb.jpg"; // Bạn có thể thay đổi tên file ảnh bài hát của bạn
+const SONG_TITLE = "Giai điệu thanh xuân";
+
 bgMusic.src = MUSIC_URL;
+widgetThumb.src = THUMB_URL;
+bannerThumb.src = THUMB_URL;
+bannerSongTitle.textContent = SONG_TITLE;
+
 let isPlaying = false;
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -87,11 +104,20 @@ function hideMusicPopup() {
 function startMusic() {
   bgMusic.play().then(() => {
     isPlaying = true;
-    musicToggle.textContent = "⏸";
-    musicToggle.classList.add('playing');
+    musicWidget.classList.add('playing');
+    bannerPlayPauseBtn.textContent = "⏸";
+    bannerSongStatus.textContent = "Đang phát";
   }).catch((e) => {
     console.warn("Trình duyệt chặn autoplay hoặc URL nhạc lỗi:", e);
   });
+}
+
+function pauseMusic() {
+  bgMusic.pause();
+  isPlaying = false;
+  musicWidget.classList.remove('playing');
+  bannerPlayPauseBtn.textContent = "▶";
+  bannerSongStatus.textContent = "Đã tạm dừng";
 }
 
 btnPlayMusic.addEventListener('click', () => {
@@ -101,19 +127,34 @@ btnPlayMusic.addEventListener('click', () => {
 
 btnMuteMusic.addEventListener('click', hideMusicPopup);
 
-musicToggle.addEventListener('click', () => {
+// Bấm vào widget góc phải để ẩn/hiện banner pop-up điều khiển
+musicWidget.addEventListener('click', (e) => {
+  e.stopPropagation();
+  musicControlBanner.classList.toggle('show');
+});
+
+// Click ra ngoài thì ẩn banner pop-up
+document.addEventListener('click', (e) => {
+  if (!musicControlBanner.contains(e.target) && !musicWidget.contains(e.target)) {
+    musicControlBanner.classList.remove('show');
+  }
+});
+
+// Nút Phát / Tạm dừng trên banner
+bannerPlayPauseBtn.addEventListener('click', () => {
   if (isPlaying) {
-    bgMusic.pause();
-    musicToggle.textContent = "🎵";
-    musicToggle.classList.remove('playing');
+    pauseMusic();
   } else {
     startMusic();
   }
-  isPlaying = !isPlaying;
+});
+
+// Thanh trượt âm lượng
+volumeRange.addEventListener('input', (e) => {
+  bgMusic.volume = e.target.value;
 });
 
 // ---------- form logic ----------
-// Link Web App Google Apps Script CỦA BẠN
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzD9C4NmTjGMarPy8BiFltw26OXIAW84pnvKuhd_6qWLDvy2OPU-KeliwUPSg6mrgFOvA/exec";
 
 const categoryEl = document.getElementById('category'); 
@@ -153,7 +194,7 @@ imageInput.addEventListener('change', () => {
 
 submitBtn.addEventListener('click', async () => {
   const content = contentEl.value.trim();
-  const category = categoryEl.value; // Lấy giá trị chủ đề từ giao diện
+  const category = categoryEl.value;
 
   if (websiteHoneypot.value.trim() !== "") {
     showStatus("Có lỗi xảy ra, vui lòng thử lại.", false);
@@ -172,19 +213,17 @@ submitBtn.addEventListener('click', async () => {
     return;
   }
 
-  // Bật loading animation trên nút
   submitBtn.disabled = true;
   submitBtn.classList.add('is-loading'); 
   showStatus("Đang thả thư trôi dạt...", true);
 
-  // Gộp chủ đề và nội dung lại với nhau, phân cách bằng dấu /
   const finalContent = category + " / " + content;
 
   try {
     const res = await fetch(SCRIPT_URL, {
       method: "POST",
       body: JSON.stringify({
-        content: finalContent, // Gửi nội dung đã được gộp chủ đề
+        content: finalContent,
         imageBase64: imageBase64,
         imageMime: imageMime
       }),
@@ -202,9 +241,8 @@ submitBtn.addEventListener('click', async () => {
         card.style.transform = 'none';
         card.style.opacity = '1';
         
-        // Reset form
         contentEl.value = "";
-        categoryEl.selectedIndex = 0; // Đưa chủ đề về mặc định
+        categoryEl.selectedIndex = 0;
         imageInput.value = "";
         imageBase64 = "";
         polaroid.style.display = 'none';
@@ -218,7 +256,6 @@ submitBtn.addEventListener('click', async () => {
   } catch (err) {
     showStatus("Không gửi được. Vui lòng thử lại.", false);
   } finally {
-    // Tắt loading animation trên nút
     submitBtn.disabled = false;
     submitBtn.classList.remove('is-loading');
   }
