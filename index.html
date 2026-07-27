@@ -71,15 +71,11 @@
 
 <div class="boat">
   <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <!-- Thân tàu -->
     <path d="M 20 40 Q 15 35 12 25 L 20 20 L 60 20 L 68 25 Q 65 35 60 40 Z" fill="#8B6F47" stroke="#6B5232" stroke-width="1"/>
     <path d="M 20 40 Q 15 40 12 45 L 68 45 Q 65 40 60 40 Z" fill="#A0826D" stroke="#6B5232" stroke-width="1"/>
-    <!-- Buồm chính -->
     <path d="M 35 18 L 50 22 L 50 38 Q 40 42 35 40 Z" fill="#FFE5B4" stroke="#D4A574" stroke-width="0.8" opacity="0.9"/>
     <path d="M 35 18 L 50 22 L 50 38 Q 40 42 35 40 Z" fill="#FFF0D9" stroke="none" opacity="0.4"/>
-    <!-- Cột buồm -->
     <line x1="35" y1="18" x2="35" y2="40" stroke="#6B5232" stroke-width="1.2"/>
-    <!-- Chi tiết bé -->
     <rect x="25" y="38" width="6" height="4" fill="#8B6F47" stroke="#6B5232" stroke-width="0.5"/>
   </svg>
 </div>
@@ -93,39 +89,36 @@
 </div>
 
 <button class="music-btn" id="musicBtn" title="Mở trình phát nhạc"></button>
-<audio id="bgMusic" loop preload="none"></audio>
+<audio id="bgMusic" preload="none"></audio>
 
-<!-- Player Modal -->
+<!-- Player Modal (Nhạc) -->
 <div class="player-modal" id="playerModal">
-  <div class="player-content">
+  <div class="player-card">
     <button class="player-close" id="playerClose">✕</button>
-    
-    <div class="player-card">
-      <div class="album-art" id="albumArt">
-        <span>🎵</span>
-      </div>
+    <div class="album-art" id="albumArt">
+      <span>🎵</span>
+    </div>
 
-      <div class="player-title" id="playerTitle">Nhạc nền</div>
-      <div class="player-artist" id="playerArtist">Confession Ambient</div>
+    <div class="player-title" id="playerTitle">Tên Bài Hát</div>
+    <div class="player-artist" id="playerArtist">Nghệ Sĩ</div>
 
-      <div class="progress-bar" id="progressBar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-      <div class="progress-time">
-        <span id="currentTime">0:00</span>
-        <span id="duration">0:00</span>
-      </div>
+    <div class="progress-bar" id="progressBar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-time">
+      <span id="currentTime">0:00</span>
+      <span id="duration">0:00</span>
+    </div>
 
-      <div class="volume-control">
-        <span class="volume-icon">🔊</span>
-        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" />
-      </div>
+    <div class="volume-control">
+      <span class="volume-icon">🔊</span>
+      <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" />
+    </div>
 
-      <div class="player-controls">
-        <button class="player-btn" id="prevBtn" title="Bài trước">⏮</button>
-        <button class="player-btn play-pause" id="playPauseBtn" title="Phát/Tạm dừng">▶</button>
-        <button class="player-btn" id="nextBtn" title="Bài sau">⏭</button>
-      </div>
+    <div class="player-controls">
+      <button class="player-btn" id="prevBtn" title="Bài trước">⏮</button>
+      <button class="player-btn play-pause" id="playPauseBtn" title="Phát/Tạm dừng">▶</button>
+      <button class="player-btn" id="nextBtn" title="Bài sau">⏭</button>
     </div>
   </div>
 </div>
@@ -141,6 +134,18 @@
       <div class="eyebrow">Ẩn danh</div>
       <h1>Kể tôi nghe<br>điều bạn <em>giấu kín</em></h1>
       <div class="subtitle">Không tên, không tài khoản. Chỉ là bạn và một lá thư nhỏ trôi giữa nắng và biển.</div>
+
+      <!-- Mục Phân Loại -->
+      <div class="category-row">
+        <label for="categorySelect" class="category-label">Phân loại:</label>
+        <select id="categorySelect" class="category-select">
+          <option value="Tâm sự">💬 Tâm sự</option>
+          <option value="Tình cảm">❤️ Tình cảm</option>
+          <option value="Học tập">📚 Học tập</option>
+          <option value="Góc ẩn danh">🕵️ Góc ẩn danh</option>
+          <option value="Khác">✨ Khác</option>
+        </select>
+      </div>
 
       <textarea id="content" placeholder="Viết điều bạn muốn nói ở đây..." maxlength="3000"></textarea>
       <div class="char-counter" id="charCounter">0/3000</div>
@@ -186,5 +191,5 @@
 <script src="script.js" defer></script>
 
 </body>
-        </html>
-          
+  </html>
+  
