@@ -131,19 +131,19 @@ const PLAYLIST = [
     title: "Ánh Nắng Lặng Lẽ",
     artist: "Confession Ambient",
     src: "music.mp3",
-    cover: ""
+    cover: "anhnhac1.jpg"
   },
   {
     title: "Sóng Biển Rì Rào",
     artist: "Chill Lofi",
     src: "music2.mp3",
-    cover: ""
+    cover: "anhnhac2.jpg"
   },
   {
     title: "Gió Thoảng Chiều Nắng",
     artist: "Acoustic Piano",
     src: "music3.mp3",
-    cover: ""
+    cover: "anhnhac3.jpg"
   }
 ];
 
