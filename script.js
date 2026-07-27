@@ -362,10 +362,10 @@ submitBtn.addEventListener('click', async () => {
     return;
   }
 
-  if (SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbwjLtjfMieZL4LGK5yoWzHACjY3A3KygXaeRqJmH9PZbcXGXEDOX2KzKT0E4D9GeaS9Bw/exec")) {
+    if (!SCRIPT_URL || SCRIPT_URL === "" || SCRIPT_URL.includes("YOUR_SCRIPT_URL_HERE")) {
     showStatus("Chưa cấu hình SCRIPT_URL trong file script.js.", false);
     return;
-  }
+    }
 
   submitBtn.disabled = true;
   submitBtnText.innerHTML = 'Đang gửi <span class="btn-dots"><span></span><span></span><span></span></span>';
