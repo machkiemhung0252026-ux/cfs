@@ -167,7 +167,11 @@
           📎 <span id="fileLabelText">Đính kèm hình ảnh (không bắt buộc)</span>
         </label>
         <input type="file" id="imageInput" accept="image/*" />
-        <div class="polaroid" id="polaroid"><img id="preview" alt="preview" /></div>
+        <div class="polaroid" id="polaroid">
+          <button type="button" class="polaroid-remove" id="removeImageBtn" title="Bỏ ảnh này">✕</button>
+          <img id="preview" alt="preview" />
+          <div class="polaroid-caption">Một khoảnh khắc bạn muốn gửi kèm 🤍</div>
+        </div>
       </div>
 
       <div class="captcha-row">
@@ -188,6 +192,7 @@
     </div>
 
     <div class="success-view" id="successView">
+      <div class="flower-burst" id="flowerBurst"></div>
       <div class="glow-circle">☀</div>
       <h2>Đã gửi rồi!</h2>
       <p>Confession của bạn đang trôi ra khơi dưới nắng chiều.<br>Cảm ơn vì đã tin tưởng chia sẻ 🤍</p>
@@ -205,3 +210,4 @@
 </body>
   </html>
 
+        
