@@ -489,5 +489,4 @@ function spawnFlowers(){
 function showStatus(msg, ok) {
   statusEl.textContent = msg;
   statusEl.className = "status " + (ok ? "ok" : "err");
-    }
-    
+}
