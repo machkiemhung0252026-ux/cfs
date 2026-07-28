@@ -7,10 +7,14 @@ if(hour >= 6 && hour < 17){
 // ---------- dark mode toggle ----------
 const darkModeBtn = document.getElementById('darkModeBtn');
 let isDarkMode = false;
+
+const MOON_ICON = `<svg viewBox="0 0 24 24" width="19" height="19" fill="none"><path d="M20 14.2A8.2 8.2 0 1 1 9.8 4 6.6 6.6 0 0 0 20 14.2Z" fill="currentColor"/></svg>`;
+const SUN_ICON = `<svg viewBox="0 0 24 24" width="19" height="19" fill="none"><circle cx="12" cy="12" r="4.6" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.2"/><line x1="12" y1="19.8" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.2" y2="12"/><line x1="19.8" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.6" y2="19.6"/><line x1="19.6" y1="4.4" x2="17.7" y2="6.3"/><line x1="6.3" y1="17.7" x2="4.4" y2="19.6"/></g></svg>`;
+
 darkModeBtn.addEventListener('click', () => {
   isDarkMode = !isDarkMode;
   document.body.classList.toggle('dark-mode', isDarkMode);
-  darkModeBtn.textContent = isDarkMode ? '☀' : '🌙';
+  darkModeBtn.innerHTML = isDarkMode ? SUN_ICON : MOON_ICON;
 });
 
 // ---------- chia sẻ link trang ----------
@@ -59,6 +63,28 @@ for(let i=0;i<GLINT_COUNT;i++){
   g.style.animationDuration = (2 + Math.random()*3)+'s';
   g.style.animationDelay = (Math.random()*5)+'s';
   sky.appendChild(g);
+}
+
+// ---------- lấp lánh ánh nắng phản chiếu trên biển ----------
+const reflectionEl = document.querySelector('.reflection');
+if (reflectionEl) {
+  const CONTAINER_WIDTH = 150; // khớp với width của .reflection trong CSS
+  const WATER_GLINT_COUNT = 12;
+  for (let i = 0; i < WATER_GLINT_COUNT; i++) {
+    const wg = document.createElement('div');
+    wg.className = 'water-glint';
+    const topPercent = Math.random() * 100;
+    // trapezoid hẹp trên (gần mặt trời) - rộng dần xuống dưới
+    const maxWidth = 16 + (topPercent / 100) * 55;
+    const width = 8 + Math.random() * maxWidth;
+    const jitter = Math.random() * 16 - 8;
+    wg.style.width = width + 'px';
+    wg.style.top = topPercent + '%';
+    wg.style.left = (CONTAINER_WIDTH / 2 - width / 2 + jitter) + 'px';
+    wg.style.animationDuration = (1.4 + Math.random() * 2.2) + 's';
+    wg.style.animationDelay = (Math.random() * 3) + 's';
+    reflectionEl.appendChild(wg);
+  }
 }
 
 // ---------- tin nhắn khích lệ ----------
@@ -355,6 +381,27 @@ contentEl.addEventListener('input', () => {
   }, 500);
 });
 
+// ---------- popup lưu ý nhỏ khi bắt đầu nhập nội dung ----------
+const contentNotice = document.getElementById('contentNotice');
+const contentNoticeClose = document.getElementById('contentNoticeClose');
+let contentNoticeTimer;
+
+contentEl.addEventListener('focus', () => {
+  if (!sessionStorage.getItem('contentNoticeSeen')) {
+    contentNotice.classList.add('show');
+    sessionStorage.setItem('contentNoticeSeen', '1');
+    clearTimeout(contentNoticeTimer);
+    contentNoticeTimer = setTimeout(() => {
+      contentNotice.classList.remove('show');
+    }, 6000);
+  }
+}, { once: true });
+
+contentNoticeClose.addEventListener('click', () => {
+  clearTimeout(contentNoticeTimer);
+  contentNotice.classList.remove('show');
+});
+
 imageInput.addEventListener('change', () => {
   const file = imageInput.files[0];
   if (!file) return;
@@ -489,4 +536,5 @@ function spawnFlowers(){
 function showStatus(msg, ok) {
   statusEl.textContent = msg;
   statusEl.className = "status " + (ok ? "ok" : "err");
-}
+                            }
+  
