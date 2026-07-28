@@ -38,7 +38,11 @@
 </div>
 
 <div class="top-toolbar">
-  <button class="toolbar-btn" id="darkModeBtn" title="Chế độ tối/sáng">🌙</button>
+  <button class="toolbar-btn" id="darkModeBtn" title="Chế độ tối/sáng">
+    <svg id="darkModeIcon" viewBox="0 0 24 24" width="19" height="19" fill="none">
+      <path d="M20 14.2A8.2 8.2 0 1 1 9.8 4 6.6 6.6 0 0 0 20 14.2Z" fill="currentColor"/>
+    </svg>
+  </button>
   <button class="toolbar-btn" id="shareBtn" title="Chia sẻ trang">
     🔗
     <span class="copied-badge" id="copiedBadge">Đã sao chép!</span>
@@ -114,7 +118,28 @@
   </svg>
 </div>
 
-<button class="music-btn" id="musicBtn" title="Mở trình phát nhạc"></button>
+<button class="music-btn" id="musicBtn" title="Mở trình phát nhạc">
+  <svg viewBox="0 0 40 40" width="26" height="26" class="music-btn-icon">
+    <defs>
+      <radialGradient id="musicSunGrad" cx="35%" cy="30%">
+        <stop offset="0%" stop-color="#FFFDF6"/>
+        <stop offset="55%" stop-color="#FFD9A0"/>
+        <stop offset="100%" stop-color="#FF9F68"/>
+      </radialGradient>
+    </defs>
+    <g stroke="#FFE3B0" stroke-width="2.6" stroke-linecap="round" opacity="0.9">
+      <line x1="20" y1="3" x2="20" y2="8"/>
+      <line x1="20" y1="32" x2="20" y2="37"/>
+      <line x1="3" y1="20" x2="8" y2="20"/>
+      <line x1="32" y1="20" x2="37" y2="20"/>
+      <line x1="7.5" y1="7.5" x2="11" y2="11"/>
+      <line x1="29" y1="29" x2="32.5" y2="32.5"/>
+      <line x1="32.5" y1="7.5" x2="29" y2="11"/>
+      <line x1="11" y1="29" x2="7.5" y2="32.5"/>
+    </g>
+    <circle cx="20" cy="20" r="9.5" fill="url(#musicSunGrad)"/>
+  </svg>
+</button>
 <audio id="bgMusic" preload="none"></audio>
 
 <!-- Player Modal (Nhạc) -->
@@ -151,7 +176,7 @@
 
 <div class="stack">
   <div class="card" id="card">
-    <div class="seal">☀️</div>
+    <div class="seal">☀</div>
     <div id="formView">
       <div class="school-banner" id="schoolBanner">
         <img id="schoolBannerImg" src="school-banner.jpg" alt="Ảnh trường" />
@@ -167,14 +192,18 @@
         <select id="categorySelect" class="category-select">
           <option value="Tâm sự">💬 Tâm sự</option>
           <option value="Tình cảm">❤️ Tình cảm</option>
-          <option value="Học tập">📚 Học Tập</option>
-          <option value="Góc ẩn danh">👤Tìm Người/Tìm Đồ</option>
-          <option value="Khác">🔎Thắc Mắc/Giải Đáp</option>
-          <option value="Khác">🌹Xin Mạng Xã Hội</option>
+          <option value="Học tập">📚 Học tập</option>
+          <option value="Góc ẩn danh">👤Kiếm mạng xã hội</option>
+          <option value="Góc ẩn danh">🔎Tìm người/Tìm đồ</option>
           <option value="Khác">✨ Khác</option>
         </select>
       </div>
 
+      <div class="content-notice" id="contentNotice">
+        <span class="content-notice-icon">🤍</span>
+        <span class="content-notice-text">Hãy chia sẻ nhẹ nhàng — không công kích, xúc phạm hay nêu tên người khác nhé.</span>
+        <button type="button" class="content-notice-close" id="contentNoticeClose">✕</button>
+      </div>
       <textarea id="content" placeholder="Viết điều bạn muốn nói ở đây..." maxlength="3000"></textarea>
       <div class="char-counter" id="charCounter">0/3000</div>
 
@@ -216,7 +245,7 @@
     </div>
 
     <div class="note">
-      Chúng mình chỉ lưu lại thời gian, nội dung và hình ảnh.
+      Chúng mình chỉ lưu lại thời gian, nội dung và hình ảnh (nếu có) — không thu thập IP hay thông tin thiết bị của bạn.
     </div>
   </div>
 </div>
