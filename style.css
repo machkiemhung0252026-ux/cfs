@@ -1119,3 +1119,44 @@
 #captchaSuns{
   letter-spacing: 3px;
 }
+/* ================= BANNER ĐÁNH GIÁ SAO ================= */
+.rating-row {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: rgba(46, 143, 146, 0.08);
+  border: 1.5px solid var(--card-border);
+}
+
+.rating-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.star-rating {
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.star-rating .star {
+  font-size: 22px;
+  color: #ccc;
+  transition: color 0.2s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.star-rating .star.active,
+.star-rating .star.hover {
+  color: #FFB900;
+  text-shadow: 0 0 6px rgba(255, 185, 0, 0.4);
+}
+
+.star-rating .star:hover {
+  transform: scale(1.25);
+}
