@@ -608,3 +608,39 @@ function showStatus(msg, ok) {
   statusEl.textContent = msg;
   statusEl.className = "status " + (ok ? "ok" : "err");
 }
+// ---------- LOGIC ĐÁNH GIÁ SAO ----------
+let selectedRating = 5; // Mặc định là 5 sao
+const stars = document.querySelectorAll('#starRating .star');
+
+function updateStars(rating) {
+  stars.forEach(star => {
+    const val = parseInt(star.getAttribute('data-value'), 10);
+    if (val <= rating) {
+      star.classList.add('active');
+    } else {
+      star.classList.remove('active');
+    }
+  });
+}
+
+stars.forEach(star => {
+  // Hiệu ứng rê chuột
+  star.addEventListener('mouseover', () => {
+    const hoverVal = parseInt(star.getAttribute('data-value'), 10);
+    stars.forEach(s => {
+      const v = parseInt(s.getAttribute('data-value'), 10);
+      if (v <= hoverVal) s.classList.add('hover');
+      else s.classList.remove('hover');
+    });
+  });
+
+  star.addEventListener('mouseout', () => {
+    stars.forEach(s => s.classList.remove('hover'));
+  });
+
+  // Chọn số sao khi click
+  star.addEventListener('click', () => {
+    selectedRating = parseInt(star.getAttribute('data-value'), 10);
+    updateStars(selectedRating);
+  });
+});
