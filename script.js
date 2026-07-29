@@ -165,16 +165,16 @@ schoolBannerImg.addEventListener('error', () => {
 // Mỗi bài cần 1 file .mp3 (src) và có thể có 1 ảnh bìa (cover) — để cùng thư mục với index.html.
 // Nếu không có ảnh bìa, cứ để cover: "" — trình phát sẽ tự hiện icon 🎵 thay thế.
 const PLAYLIST = [
-  { title: "Ánh Nắng Lặng Lẽ",     artist: "Confession Ambient", src: "music1.mp3",  cover: "anhnhac1.jpg" },
-  { title: "Sóng Biển Rì Rào",     artist: "Chill Lofi",         src: "music2.mp3",  cover: "anhnhac2.jpg" },
-  { title: "Gió Thoảng Chiều Nắng", artist: "Acoustic Piano",     src: "music3.mp3",  cover: "anhnhac3.jpg" },
-  { title: "Hoàng Hôn Trên Biển",  artist: "Lofi Chill",         src: "music4.mp3",  cover: "anhnhac4.jpg" },
-  { title: "Mưa Rơi Nhẹ Nhàng",    artist: "Piano Instrumental", src: "music5.mp3",  cover: "anhnhac5.jpg" },
-  { title: "Đêm Sao Yên Bình",     artist: "Ambient Chill",      src: "music6.mp3",  cover: "anhnhac6.jpg" },
-  { title: "Nắng Sớm Mai",         artist: "Acoustic Guitar",    src: "music7.mp3",  cover: "anhnhac7.jpg" },
-  { title: "Thì Thầm Cùng Gió",    artist: "Lofi Beats",         src: "music8.mp3",  cover: "anhnhac8.jpg" },
-  { title: "Khoảnh Khắc Lặng Yên", artist: "Piano Chill",        src: "music9.mp3",  cover: "anhnhac9.jpg" },
-  { title: "Trôi Theo Dòng Nắng",  artist: "Ambient Ocean",      src: "music10.mp3", cover: "anhnhac10.jpg" }
+  { title: "Ánh Nắng Lặng Lẽ",     artist: "", src: "music1.mp3",  cover: "anhnhac1.jpg" },
+  { title: "Sóng Biển Rì Rào",     artist: "",         src: "music2.mp3",  cover: "anhnhac2.jpg" },
+  { title: "Gió Thoảng Chiều Nắng", artist: "",     src: "music3.mp3",  cover: "anhnhac3.jpg" },
+  { title: "Hoàng Hôn Trên Biển",  artist: "",         src: "music4.mp3",  cover: "anhnhac4.jpg" },
+  { title: "Mưa Rơi Nhẹ Nhàng",    artist: "", src: "music5.mp3",  cover: "anhnhac5.jpg" },
+  { title: "Đêm Sao Yên Bình",     artist: "",      src: "music6.mp3",  cover: "anhnhac6.jpg" },
+  { title: "Nắng Sớm Mai",         artist: "",    src: "music7.mp3",  cover: "anhnhac7.jpg" },
+  { title: "Thì Thầm Cùng Gió",    artist: "",         src: "music8.mp3",  cover: "anhnhac8.jpg" },
+  { title: "Khoảnh Khắc Lặng Yên", artist: "",        src: "music9.mp3",  cover: "anhnhac9.jpg" },
+  { title: "Trôi Theo Dòng Nắng",  artist: "",      src: "music10.mp3", cover: "anhnhac10.jpg" }
 ];
 
 let currentTrackIndex = 0;
