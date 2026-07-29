@@ -136,7 +136,7 @@ function generateCaptcha(){
   sunAnswer = 3 + Math.floor(Math.random()*5);
   const totalIcons = sunAnswer + 1 + Math.floor(Math.random()*3);
   let icons = [];
-  for(let i=0;i<sunAnswer;i++) icons.push('☀');
+  for(let i=0;i<sunAnswer;i++) icons.push('☀️');
   while(icons.length < totalIcons){
     icons.push(DECOY_EMOJIS[Math.floor(Math.random()*DECOY_EMOJIS.length)]);
   }
@@ -144,7 +144,7 @@ function generateCaptcha(){
     const j = Math.floor(Math.random()*(i+1));
     [icons[i], icons[j]] = [icons[j], icons[i]];
   }
-  captchaSuns.textContent = icons.join(' ');
+  captchaSuns.textContent = icons.join('?');
   captchaInput.value = "";
 }
 generateCaptcha();
@@ -528,7 +528,7 @@ submitBtn.addEventListener('click', async () => {
       method: "POST",
       body: JSON.stringify({
         category: category,
-        content: content,
+        content: content + " / Đánh giá: " + selectedRating + "★",
         imageBase64: mediaBase64,
         imageMime: mediaMime
       }),
@@ -581,6 +581,8 @@ submitBtn.addEventListener('click', async () => {
 againBtn.addEventListener('click', () => {
   successView.style.display = 'none';
   formView.style.display = 'block';
+  selectedRating = 5;
+  updateStars(selectedRating);
 });
 
 const flowerBurst = document.getElementById('flowerBurst');
