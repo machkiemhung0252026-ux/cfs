@@ -144,7 +144,7 @@ function generateCaptcha(){
     const j = Math.floor(Math.random()*(i+1));
     [icons[i], icons[j]] = [icons[j], icons[i]];
   }
-  captchaSuns.textContent = icons.join('?');
+  captchaSuns.textContent = icons.join(' ');
   captchaInput.value = "";
 }
 generateCaptcha();
